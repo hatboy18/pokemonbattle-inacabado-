@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html>
+    <head>
+        <title>Joguineo Pokemon</title>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        h3{
+            font-family: Arial, Helvetica, sans-serif;
+            text-justify: center;
+        }
+        .bund{
+            position: relative;
+            left: 250px;
+            top: 45px;
+            display: flex;
+            align-items: start;
+            background-color: rgb(219, 219, 219);
+            height: 75px;
+            width: 250px;
+        }
+        .playerlayout{
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            height: 70vh;
+        }
+        .botões{
+            position: relative;
+            right: 250px;
+            bottom: 125px;
+            background-color: rgb(76, 76, 122);
+            padding: 20px;
+        }
+        #zigzagoon{
+            transform: translate(115vh,5vh);
+        }
+        #squirtle{
+            position: absolute;
+            right: 135vh;
+            bottom: 20vh;
+        }
+        .opcoes{
+            display: none;
+        }
+        .ataqs{
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        #vidazige{
+            height: 10%;
+            background-color: rgb(0, 255, 0);
+            transition: width 0.5s;
+
+        }
+        .vidasqr{
+            height: 10%;
+            background-color: #4caf50;
+            transition: width 0.5s;
+        }
+    </style>
+    <body>
+        <div class="bund">
+            <h3>Zigzagoon Lv. 5</h3>
+            <div id='vidazige'  style="width: 100%;"></div>
+        </div>
+            <img src="zigzagoon.gif" alt="zig" id="zigzagoon" width="160px" height="120px">
+        <div class="playerlayout">
+            <img src="squirtle.gif" alt="squirt" width="160px" height="120px" id="squirtle">
+            <div class="botões">
+                <h3>Squirtle Lv.5</h3>
+                    
+                <button id="botacar" class="ataqs">lutar</button>
+                
+                <div id="opcoes" class="opcoes">
+                    <button id="tackle" type="button" onclick="tackler()" > tackle </button>
+                    <button type="button" onclick="hydrocacnnon()">hydrocannon</button>
+                    <button type="button" onclick="bubble()">bubble</button>
+                </div>
+                <button>capturar</button>
+                <button>fugir</button>
+            </div>
+        </div>
+
+    <script>
+        document.getElementById('botacar').addEventListener('click', function(){
+            var ataques = document.getElementById('opcoes');
+            
+            if (ataques.style.display === 'none'){
+                ataques.style.display = 'block';
+            }
+            else{
+                ataques.style.display =  'none'
+            }
+        });
+            var Squirtle = {
+                'vida':100,
+                'ataque': Math.floor(Math.random()*40),
+                'defesa':20
+            }
+            var habilidadeS = {
+                'bubble': Math.floor(Math.random()*60),
+                'hydrocannon': Math.floor(Math.random()*100),
+            }
+            var Zigzagoon = {
+                'vida':120,
+                'ataque': Math.floor(Math.random()*35),
+                'defesa':25
+            }
+            var habilidadeZ = {
+                'cumshot':9999,
+                'furyattack': Math.floor(Math.random()*30)
+            }
+            function furryattack(){
+                let = prob = Math.floor(Math.random()*3);
+                if (prob == 3){
+                    let nmrataqs = Math.floor(Math.random()*2);
+                    if (nmrataqs = 2){
+                        let totdem = habilidadeZ['furyattack'] + habilidadeZ['furyattack'];
+                        Squirtle['vida'] = Squirtle['vida'] - totdem;
+                    }
+                    else{
+                        Squirtle['vida'] = Squirtle['vida'] - habilidadeZ['furryattack'];
+                    }
+                }
+                else{
+                    console.log("errou o ataque")
+                }
+            }
+            function cumshot(){
+                let prob = Math.floor(Math.random()*20);
+                if (prob == 20){
+                    Squirtle['vida'] = 0
+                }
+                else{
+                    console.log("tentativa falha")
+                }
+            }
+            function bubble(){
+                let prob = Math.floor(Math.random()*5);
+                if (prob == 5){
+                    Zigzagoon['vida'] = Zigzagoon['vida'] - habilidadeS['bubble'];
+                }
+            }
+            function hydrocannon(){
+                let prob = Math.floor(Math.random()*5);
+                if (prob == 5){
+                    Zigzagoon['vida'] = Zigzagoon['vida'] - habilidadeS['hydrocannon'];
+                }
+            }
+            function tackler(){
+                Zigzagoon['vida'] -= Squirtle['ataque'];
+                vidadomano();
+            }
+            function vidadomano(){
+                var vidaziger = document.getElementById("vidazige");
+                if (Zigzagoon['vida'] <= 50 && Zigzagoon['vida'] > 30) {
+                    vidaziger.style.backgroundColor = 'yellow';
+                } else if (Zigzagoon['vida'] <= 30) {
+                    vidaziger.style.backgroundColor = 'red';
+                }
+            }
+            document.getElementById('tackle').addEventListener('click', tackler);
+            
+            function tackleZig(){
+                Squirtle['vida'] = Squirtle['vida'] - Zigzagoon['ataque'];
+            }
+            
+            function Ziground(){
+                let wich = Math.floor(Math.random()*2);
+                if (wich == 1){
+                    furryattack();
+                }
+                else{
+                    cumshot();
+                }
+            }
+            
+    </script>
+    </body>
+</html>
